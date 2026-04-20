@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. ../test-one
+
+test_one "lm1" $1
