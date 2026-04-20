@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+case "$(uname)" in
+*Darwin*)
+  READLINK=greadlink
+  if [ ! -f "$(which greadlink)" ]; then
+    echo "Missing greadlink. Please install coreutils:"
+    printf "\tbrew install coreutils\n"
+    exit 4
+  fi
+  ;;
+*)
+  READLINK=readlink
+  ;;
+esac
+
+# Set our home
+export SILVER_HOME=$(dirname "${BASH_SOURCE[0]}")/..
+export SILVER_GEN=$SILVER_HOME/gen
+
+# Make dir for generated Java files
+mkdir -p $SILVER_HOME/gen
+
+# Find the silver jar
+SILVER="$SILVER_HOME/jars/silver.compiler.composed.Default.jar"
+
+if [ ! -f "$SILVER" ]; then
+  echo "Couldn't find the Silver jars to execute, aborting."
+  exit 2
+fi
+
+# Set flags if not overriden in environment
+SVJVM_FLAGS=${SVJVM_FLAGS:-"-Xmx5000M -Xss20M"}
+
+# Save the command line arguments to pass to Silver
+SV_ARGS=("$@")
+
+# Tell ant if we named the build file something else
+while [ "$#" -gt 0 ]; do
+    if [ "$1" = --build-xml-location ]; then
+        export ANT_ARGS="-buildfile $2"
+        shift
+    fi
+    shift
+done
+
+set +e
+# shellcheck disable=SC2086
+java $SVJVM_FLAGS -jar "$SILVER" "${SV_ARGS[@]}" && ant
+
+# Intercept exit code 127 meaning success, but ant should not be run
+CODE=$?
+[ $CODE -eq 127 ] || exit $CODE

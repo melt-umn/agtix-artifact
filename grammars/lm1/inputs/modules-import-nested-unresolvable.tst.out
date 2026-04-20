@@ -1,0 +1,3 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+  - inputs/modules-import-nested-unresolvable.tst:6:14: error: b unresolvable

@@ -1,0 +1,4 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+  - inputs/modules-import-circ.tst:2:9: error: unresolvable module reference B
+  - inputs/modules-import-circ.tst:3:10: error: b unresolvable

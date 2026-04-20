@@ -1,0 +1,105 @@
+#!/bin/bash
+
+HERE=$(dirname "${BASH_SOURCE[0]}")
+
+comp_grammar() {
+  pushd $1 > /dev/null
+  ./compile > /dev/null 2>&1
+  RES=$?
+  popd > /dev/null
+  return $RES
+}
+
+clean_grammar() {
+  pushd $1 > /dev/null
+  ./clean
+  popd > /dev/null
+}
+
+exec_tests() {
+  FAILED=0
+  COUNTER=1
+  pushd $1 > /dev/null
+  TSTS=(inputs/*.tst)
+  TOTAL=${#TSTS[@]}
+  for INP in ${TSTS[@]}; do
+    OUT=$(diff <(java -jar "$1.jar" "$INP") "$INP.out")
+    RES=$?
+    if [ "$RES" != "0" ]; then
+      echo -e "\t[$COUNTER/$TOTAL] $1/$INP FAILED with the following diff:"
+      echo $OUT
+      FAILED=$(($FAILED+1))
+    else
+      echo -e "\t[$COUNTER/$TOTAL] $1/$INP PASSED"
+    fi
+    COUNTER=$(($COUNTER+1))
+  done
+  popd > /dev/null
+  return $FAILED
+}
+
+print_tsts() {
+  for TST in $1; do
+    echo -e "\t- $TST"
+  done
+}
+
+echo "--------------------------------------------------"
+echo "-- Testing harness for AgTix ---------------------"
+
+FAILED_COMP=()
+FAILED_EXEC=()
+PASSED_EXEC=()
+
+pushd $HERE > /dev/null
+
+for TST in $(find * -maxdepth 0 -type d); do
+  echo "--------------------------------------------------"
+  echo "- Compiling grammar $TST"
+  comp_grammar "$TST"
+  COMP_RES=$?
+  if [ "$COMP_RES" != "0" ]; then
+    echo "- Grammar $TST failed to compile, moving on"
+    FAILED_COMP+=("$TST")
+    continue
+  fi
+  echo "- Executing tests inputs for $TST"
+  exec_tests "$TST"
+  FAIL_NUM=$?
+  echo "- Number of failed tests for $TST: $FAIL_NUM"
+  if [ "$FAIL_NUM" != "0" ]; then
+    FAILED_EXEC+=("$TST")
+  else
+    PASSED_EXEC+=("$TST")
+  fi
+  clean_grammar "$TST"
+done
+
+echo "--------------------------------------------------"
+echo "-- Final report ----------------------------------"
+echo "--------------------------------------------------"
+
+if [ ${#FAILED_COMP[@]} -gt 0 ]; then
+  echo "- Grammars that failed to compile: $FAILED_COMP"
+  print_tsts "$FAILED_COMP"
+else
+  echo "- All grammars compiled successfully"
+fi
+
+if [ ${#PASSED_EXEC[@]} -gt 0 ]; then
+  echo "- Grammars that passed all tests:"
+  print_tsts "$PASSED_EXEC"
+else
+  echo "- No grammars passed all input tests"
+fi
+
+if [ ${#FAILED_EXEC[@]} -gt 0 ]; then
+  echo "- Grammars that failed input tests: $FAILED_EXEC"
+  print_tsts "$FAILED_EXEC"
+else
+  echo "- Test inputs successful for all grammars"
+fi
+
+echo "--------------------------------------------------"
+
+popd > /dev/null
