@@ -2,3 +2,4 @@ gen/
 *.tar
 *.xml
 grammars/*/*.jar
+fetch-jars

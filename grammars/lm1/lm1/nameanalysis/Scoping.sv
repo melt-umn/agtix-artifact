@@ -691,7 +691,7 @@ abstract production modRef
 top::ModRef ::= x::String
 {
   local mods::[Decorated Scope with LMLabels] =
-    query(`lex*`imp?`mod,
+    query(`lex* `imp? `mod,
           `mod < `imp < `lex,
           isModuleCalled(x), top.s);
   
