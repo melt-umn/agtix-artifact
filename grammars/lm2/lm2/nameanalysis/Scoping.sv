@@ -382,7 +382,6 @@ top::Binds ::= b::Bind bs::Binds
 abstract production seqBindsLast
 top::Binds ::= b::Bind
 { 
-  
   existsScope s_dcl;
   
   newScope top.s_last;

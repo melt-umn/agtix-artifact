@@ -122,7 +122,6 @@ top::Module ::= x::String ds::Decls
   modScope -[ lex ]-> top.s;
 
   top.s_def -[ mod ]-> modScope;
-  
   top.s_module -[ mod ]-> modScope;
 
   ds.s = modScope;
