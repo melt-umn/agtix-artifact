@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+SRC=$(dirname "${BASH_SOURCE[0]}")
+
+set -eu
+silver() { "$SRC/../../tools/silver" "$@"; }
+
+GRAMMAR=lm2
+
+silver -G "$SRC/../../gen" -I $SRC $@ $GRAMMAR
+
+exit 0

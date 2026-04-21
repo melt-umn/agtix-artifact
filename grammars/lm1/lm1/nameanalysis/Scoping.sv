@@ -358,9 +358,7 @@ top::Expr ::= e1::Expr e2::Expr e3::Expr
 
   top.errs = msgs1 ++ msgs2 ++ e1.errs ++ e2.errs ++ e3.errs;
 
-  top.ocaml = "if " ++ e1.ocaml ++ 
-                    " then " ++ e2.ocaml ++
-                    " else " ++ e3.ocaml;
+  top.ocaml = "if " ++ e1.ocaml ++ " then " ++ e2.ocaml ++ " else " ++ e3.ocaml;
 }
 
 abstract production exprLet
@@ -397,27 +395,6 @@ top::Expr ::= bs::ParBinds e::Expr
   top.errs = bs.errs ++ e.errs;
 
   top.ocaml = bs.ocaml ++ e.ocaml;
-
-  bs.isFirst = true;
-}
-
-abstract production exprLetPar
-top::Expr ::= bs::ParBinds e::Expr
-{
-  newScope s_let;
-
-  s_let -[ lex ]-> top.s;
-
-  bs.s = top.s;
-  bs.s_def = s_let;
-
-  e.s = s_let;
-
-  top.type = e.type;
-
-  top.errs = bs.errs ++ e.errs;
-
-  top.ocaml = error("exprLetPar.ocaml TODO");
 
   bs.isFirst = true;
 }

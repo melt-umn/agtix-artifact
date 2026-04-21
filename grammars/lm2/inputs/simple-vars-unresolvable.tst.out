@@ -1,0 +1,3 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+  - inputs/simple-vars-unresolvable.tst:2:8: error: a unresolvable
