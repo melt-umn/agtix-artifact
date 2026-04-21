@@ -10,7 +10,7 @@ More content here to come...
 ```
 .
 ├── run-tests         # Script to run all test inputs for all test languages (invokes grammars/test-all)
-├── grammars
+├── grammars          # Directory holding grammars for testing languages
 │   ├── test-all      # Script to run all test inputs for all test languages
 │   ├── test-one      # Script with function allowing individual grammars to execute individual test inputs
 │   └── lm1/          # Directory for LM version 1 test case
@@ -20,7 +20,7 @@ More content here to come...
 │       ├── run-test  # Script to run an individual test input
 │       └── clean     # Cleanup grammar dir
 ├── jars/             # Contains JAR files for AgTix/Silver
-├── tools/
+├── tools/            # Home for certain scripts
 │   └── silver        # Script for invoking Siler with JARs in jars/
 ├── Dockerfile        # Dockerfile for making an image of this artifact
 ├── docker-image      # Script to generate and execute artifact docker image

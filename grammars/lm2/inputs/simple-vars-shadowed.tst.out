@@ -1,2 +1,4 @@
 [✔] Parse success
-[✔] Semantic check successful
+[✗] Semantic check failed with the following errors:
+  - inputs/simple-vars-shadowed.tst:3:8: error: x ambiguous
+  - inputs/simple-vars-shadowed.tst:3:12: error: x ambiguous

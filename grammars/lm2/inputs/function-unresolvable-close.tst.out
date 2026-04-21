@@ -1,4 +1,4 @@
 [✔] Parse success
 [✗] Semantic check failed with the following errors:
-  - inputs/function-unresolvable-close.tst:3:24: error: addTwo unresolvable, close to: addOne
+  - inputs/function-unresolvable-close.tst:3:24: error: addTwo unresolvable, close to: addOne, addTwoToTwo
   - inputs/function-unresolvable-close.tst:3:18: error: application expects left operand to be of function type, but an expression was given of type <err>

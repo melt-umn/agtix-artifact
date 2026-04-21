@@ -1,2 +1,4 @@
 [✔] Parse success
-[✔] Semantic check successful
+[✗] Semantic check failed with the following errors:
+  - inputs/modules-import-nested.tst:6:9: error: unresolvable module reference B
+  - inputs/modules-import-nested.tst:7:14: error: b unresolvable
