@@ -73,7 +73,7 @@ for TST in $(find * -maxdepth 0 -type d); do
   else
     PASSED_EXEC+=("$TST")
   fi
-  #clean_grammar "$TST"
+  clean_grammar "$TST"
 done
 
 echo "--------------------------------------------------"
