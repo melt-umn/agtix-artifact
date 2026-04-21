@@ -213,7 +213,7 @@ Scope graph declaration and example scope attribute:
 -- AGTix: Declare a new type of scope graph whose labels are 'lex', 'var', 'mod',
 -- and 'imp'. Make an alias for this label set called 'LMLabels' (used in the
 -- module reference example).
-scope labels lex, var, mod, imp as LMLabels;
+scope labels `lex, `var, `mod, `imp as LMLabels;
 
 -- AGTix: Define a new scope attribute 's' which occurs on the nonterminals
 -- listed after 'occurs on'. A scope attribute is a kind of inherited attribute
@@ -264,10 +264,10 @@ top::Binds ::= b::Bind
   newScope top.s_last;
   
   -- AGTix: Asserting a 'lex' edge from top.s_last (built above) to top.s, the previous scope built in a sequential let binding list
-  top.s_last -[ lex ]-> top.s;
+  top.s_last -[ `lex ]-> top.s;
   
   -- AGTix: Asserting a 'var' edge from top.s_last (built above) to s_dcl, built down in subtree 'b'
-  top.s_last -[ var ]-> s_dcl;
+  top.s_last -[ `var ]-> s_dcl;
   
   b.inSeqLet = true;
 
@@ -286,7 +286,7 @@ top::Binds ::= b::Bind
 Module declaration:
 
 ```
--- Production for declaring modules 'mod A { ... }'
+-- Production for declaring modules 'module A { ... }'
 abstract production module
 top::Module ::= x::String ds::Decls
 {
@@ -295,10 +295,10 @@ top::Module ::= x::String ds::Decls
   newScope modScope -> datumMod(x, top);
 
   -- AGTix: Asserting a 'lex' edge from modScope to top.s, the scope of the enclosing module
-  modScope -[ lex ]-> top.s;
+  modScope -[ `lex ]-> top.s;
 
   -- AGTix: Asserting a 'mod' edge from top.s, the scope of the enclosing module, to modScope
-  top.s -[ mod ]-> modScope;
+  top.s -[ `mod ]-> modScope;
   
   -- AGTix: Defining scope attribute 's' for subtree 'ds' as modScope.
   -- Hides details of how edge targets are propagated around the AST implicitly for building scope graphs
@@ -327,7 +327,7 @@ top::ModRef ::= x::String
 
   -- AGTix: Asserting an edge from top.s, the scope of the enclosing module,
   -- to s_res, the module scope found in the resolution of 'x'
-  top.s -[ imp ]-> s_res;
+  top.s -[ `imp ]-> s_res;
 
   top.errs = 
     case mods of

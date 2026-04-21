@@ -2,7 +2,7 @@ grammar lm2:nameanalysis;
 
 --------------------------------------------------
 
-scope labels lex, var, mod, imp as LMLabels;
+scope labels `lex, `var, `mod, `imp as LMLabels;
 
 scope attribute s;
 scope attribute s_last;
@@ -76,7 +76,7 @@ top::Decl ::= b::Bind
   b.s_dcl = s_dcl;
   b.inSeqLet = true;
 
-  top.s -[ var ]-> s_dcl;
+  top.s -[ `var ]-> s_dcl;
 
   top.errs = b.errs;
 }
@@ -90,9 +90,9 @@ top::Module ::= x::String ds::Decls
 {
   newScope modScope -> datumMod(x, top);
 
-  modScope -[ lex ]-> top.s;
+  modScope -[ `lex ]-> top.s;
 
-  top.s -[ mod ]-> modScope;
+  top.s -[ `mod ]-> modScope;
   
   ds.s = modScope;
 
@@ -210,8 +210,8 @@ top::Expr ::= b::Bind e::Expr
 
   newScope s_fun;
 
-  s_fun -[ lex ]-> top.s;
-  s_fun -[ var ]-> s_dcl;
+  s_fun -[ `lex ]-> top.s;
+  s_fun -[ `var ]-> s_dcl;
 
   b.s = top.s;
   b.s_dcl = s_dcl;
@@ -322,7 +322,7 @@ top::Expr ::= bs::ParBinds e::Expr
 {
   newScope s_let;
 
-  s_let -[ lex ]-> top.s;
+  s_let -[ `lex ]-> top.s;
 
   bs.s = s_let;
   bs.s_def = s_let;
@@ -341,7 +341,7 @@ top::Expr ::= bs::ParBinds e::Expr
 {
   newScope s_let;
 
-  s_let -[ lex ]-> top.s;
+  s_let -[ `lex ]-> top.s;
 
   bs.s = top.s;
   bs.s_def = s_let;
@@ -366,8 +366,8 @@ top::Binds ::= b::Bind bs::Binds
   
   newScope s_next;
   
-  s_next -[ lex ]-> top.s;
-  s_next -[ var ]-> s_dcl;
+  s_next -[ `lex ]-> top.s;
+  s_next -[ `var ]-> s_dcl;
   
   b.inSeqLet = true;
   b.s = top.s; 
@@ -386,8 +386,8 @@ top::Binds ::= b::Bind
   
   newScope top.s_last;
   
-  top.s_last -[ lex ]-> top.s;
-  top.s_last -[ var ]-> s_dcl;
+  top.s_last -[ `lex ]-> top.s;
+  top.s_last -[ `var ]-> s_dcl;
   
   b.inSeqLet = true;
   b.s = top.s;
@@ -401,7 +401,7 @@ top::Binds ::=
 {
   newScope top.s_last;
 
-  top.s_last -[ lex ]-> top.s;
+  top.s_last -[ `lex ]-> top.s;
 
   top.errs = [];
 }
@@ -426,7 +426,7 @@ top::ParBinds ::= s::Bind
   s.s = top.s;
   s.s_dcl = s_dcl;
 
-  top.s_def -[ var ]-> s_dcl;
+  top.s_def -[ `var ]-> s_dcl;
 
   top.errs = s.errs;
 
@@ -441,7 +441,7 @@ top::ParBinds ::= s::Bind ss::ParBinds
   s.s = top.s;
   s.s_dcl = s_dcl;
 
-  top.s_def -[ var ]-> s_dcl;
+  top.s_def -[ `var ]-> s_dcl;
 
   ss.s = top.s;
   ss.s_def = top.s_def;
@@ -598,7 +598,7 @@ top::ModRef ::= x::String
   local s_res::Decorated Scope with LMLabels =
     if length(mods) == 1 then head(mods) else deadScope;
 
-  top.s -[ imp ]-> s_res;
+  top.s -[ `imp ]-> s_res;
 
   top.errs = 
     case mods of
