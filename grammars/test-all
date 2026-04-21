@@ -73,7 +73,7 @@ for TST in $(find * -maxdepth 0 -type d); do
   else
     PASSED_EXEC+=("$TST")
   fi
-  clean_grammar "$TST"
+  #clean_grammar "$TST"
 done
 
 echo "--------------------------------------------------"
@@ -82,19 +82,19 @@ echo "--------------------------------------------------"
 
 if [ ${#FAILED_COMP[@]} -gt 0 ]; then
   echo "- Grammars that failed to compile: $FAILED_COMP"
-  print_tsts "${FAILED_COMP[@]}"
+  for TST in ${FAILED_COMP[@]}; do echo -e "\t- $TST"; done
 else
   echo "- All grammars compiled successfully"
 fi
 
 if [ ${#PASSED_EXEC[@]} -gt 0 ]; then
   echo "- Grammars that passed all tests:"
-  print_tsts "${PASSED_EXEC[@]}"
+  for TST in ${PASSED_EXEC[@]}; do echo -e "\t- $TST"; done
 fi
 
 if [ ${#FAILED_EXEC[@]} -gt 0 ]; then
   echo "- Grammars that failed input tests: $FAILED_EXEC"
-  print_tsts "${FAILED_EXEC[@]}"
+  for TST in ${FAILED_EXEC[@]}; do echo -e "\t- $TST"; done
 fi
 
 echo "--------------------------------------------------"

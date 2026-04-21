@@ -45,6 +45,24 @@ submitted to [ACM SIGPLAN SLE 2026](https://conf.researchr.org/home/sle-2026).
 Its purpose is to demonstrate the use of AGTix constructs for specifying the
 construction and interrogation of scope graphs, which are implemented as a
 language extension to the reference attribute grammar language Silver.
+
+AGTix is a fusion of [Statix](https://spoofax.dev/references/statix/) 
+(inspiration for the constructs introduced is primarily inspired by
+[MiniStatix](https://github.com/metaborg/ministatix.hs)) and reference
+attribute grammars ([Silver](github.com/melt-umn/silver) specifically), which
+brings Statix-like constraints for building and querying scope graphs into RAGs
+as new equation forms, implemented as a language extension to Silver. This
+allows a much more concise definition of scope graph-based name analysis than
+is yielded by the full Statix-to-RAGs translation of our 
+[previous work](https://dl.acm.org/doi/pdf/10.1145/3732771.3742711). The new
+AGTix constructs implicitly translate to attribute declarations/definitions
+and production equations akin to what is presented in that previous work, hiding
+the details such as how targets of edge assertions are propagated around an
+AST, which often involve many more equations and definitions than what AGTix
+specifications yield. It also means that Statix specifications can be more
+easily translated to RAG specifications, as a consequence of AGTix is that these
+now have a much closer line-to-line correspondence.
+
 The artifact contains a number of example languages with name resolution
 semantics defined using AGTix, scripts for compiling those languages, and other
 scripts for executing each with test input programs which compare output against
@@ -59,7 +77,7 @@ latest version of AGTix.
 │   ├── test-one          # Script with function allowing individual grammars to execute individual test inputs
 │   └── lm1/              # Directory for LM version 1 test case
 │       ├── lm1/          # Contains grammar for LM version 1
-│       ├── inputs/       # Tetst inputs
+│       ├── inputs/       # Test inputs
 │       ├── compile       # Compile script
 │       ├── run-test      # Script to run an individual test input
 │       └── clean         # Cleanup grammar dir
