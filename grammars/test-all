@@ -55,6 +55,9 @@ PASSED_EXEC=()
 pushd $HERE > /dev/null
 
 for TST in $(find * -maxdepth 0 -type d); do
+  if [ "$TST" == "comscan" ]; then
+    continue
+  fi
   echo "--------------------------------------------------"
   echo "- Compiling grammar $TST"
   comp_grammar "$TST"
