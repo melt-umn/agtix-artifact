@@ -12,34 +12,41 @@ monoid attribute defaultExpr::Maybe<Decorated Expr> with nothing(),
 --
 
 nonterminal DclList with location, msgs, s, s_def;
-propagate msgs, s, s_def on DclList;
+
+--propagate msgs, s, varEdges on DclList;
 
 abstract production branchDclList
 top::DclList ::= d1::DclList d2::DclList
 {
+  propagate msgs, s, s_def;
 }
 
 abstract production nilDclList
 top::DclList ::=
 {
+  propagate msgs;
 }
 
 abstract production oneDclList
 top::DclList ::= d::Dcl
 {
+  propagate msgs, s, s_def;
 }
 
 --
 
 nonterminal Dcl with location, name, msgs, type, s, s_def;
-propagate msgs, s on Dcl;
+
+--propagate msgs, s on Dcl;
 
 abstract production dcl
 top::Dcl ::= ty::Type name::String mods::Modifiers
 {
+  propagate msgs, s;
+
   top.name = name;
   top.type = ^tyWithDefault;
-
+  
   newScope dclScope -> datumVar(top);
   top.s_def -[ `var ]-> dclScope;
 
@@ -90,34 +97,42 @@ top::Dcl ::= ty::Type name::String mods::Modifiers
 --
 
 nonterminal Modifiers with location, msgs, modsCheck, s, defaultCount, defaultExpr;
-propagate msgs, s, defaultCount, defaultExpr on Modifiers;
+
+--propagate msgs, s, defaultCount, defaultExpr on Modifiers;
 
 abstract production modifiersCons
 top::Modifiers ::= mod::Modifier mods::Modifiers
 {
+  propagate msgs, s, defaultCount, defaultExpr;
+
   top.modsCheck = \t::Type -> mod.modsCheck(t) ++ mods.modsCheck(t); 
 }
 
 abstract production modifiersOne
 top::Modifiers ::= mod::Modifier
-{  
+{
+  propagate msgs, s, defaultCount, defaultExpr;
+  
   top.modsCheck = mod.modsCheck;
 }
 
 abstract production modifiersNil
 top::Modifiers ::=
 {
+  propagate msgs, s, defaultCount, defaultExpr;
   top.modsCheck = \_ -> [];
 }
 
 --
 
 nonterminal Modifier with location, msgs, modsCheck, s, defaultCount, defaultExpr;
-propagate msgs, s on Modifier;
+
+--propagate msgs, s on Modifier;
 
 abstract production defaultModifier
 top::Modifier ::= e::Expr
 {
+  propagate msgs, s;
   top.modsCheck = \t::Type ->
     if !tyEq(t, e.type)
     then [errMessage("default expression has type " ++ e.type.strRep ++ 

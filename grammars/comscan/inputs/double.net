@@ -43,12 +43,8 @@ actor Sender() : Integer -> receiver: Integer, doneSending: DoneEvent, stdOut: S
     trigger String with { value = ("===== Double program starting =====\n") } for stdOut;
 
     Integer first  = Integer with { value = 2 };
-    Integer second = Integer with { value = 2 };
-    Integer third  = Integer with { value = 2 };
 
     trigger first  for receiver;
-    trigger second for receiver;
-    trigger third  for receiver;
 
     DoneEvent done = DoneEvent with {};
     trigger done for doneSending;
