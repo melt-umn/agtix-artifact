@@ -1,0 +1,3 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/import-unresolvable.tst:2:0: error: could not resolve file foo.tst

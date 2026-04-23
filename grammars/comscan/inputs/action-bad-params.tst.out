@@ -1,0 +1,4 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/action-bad-params.tst:15:6: error: foo expected a value of type int in position 1 but was given a value of type bool
+inputs/action-bad-params.tst:16:6: error: not enough arguments given to action foo

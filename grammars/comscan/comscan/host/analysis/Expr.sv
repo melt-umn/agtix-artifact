@@ -724,7 +724,7 @@ top::Expr ::= table::Expr key::Expr
                    " with an expression of type " ++ rt.strRep, top.location) ]
     | _, _ ->
       [ errMessage("table index expected a table as its left operand " ++ 
-                   "but received an expression of type " ++ key.type.strRep,
+                   "but received an expression of type " ++ table.type.strRep,
                    top.location) ]
     end;
 }

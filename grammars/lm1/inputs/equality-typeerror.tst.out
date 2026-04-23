@@ -1,0 +1,5 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+  - inputs/equality-typeerror.tst:1:13: error: equality expects right operand to be of type int, but an expression was given of type bool
+  - inputs/equality-typeerror.tst:3:8: error: equality expects right operand to be of type int, but an expression was given of type float
+  - inputs/equality-typeerror.tst:4:8: error: equality expects right operand to be of type float, but an expression was given of type bool

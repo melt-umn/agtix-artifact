@@ -1,0 +1,6 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+  - inputs/typeerror-letseq.tst:3:4: error: variable x declared with type int, but its definition has type bool
+  - inputs/typeerror-letseq.tst:4:4: error: variable y declared with type bool, but its definition has type int
+  - inputs/typeerror-letseq.tst:5:4: error: variable z declared with type float, but its definition has type bool
+  - inputs/typeerror-letseq.tst:7:4: error: (+) RHS type not int/float, is bool

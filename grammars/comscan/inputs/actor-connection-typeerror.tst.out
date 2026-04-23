@@ -1,0 +1,3 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/actor-connection-typeerror.tst:6:19: error: actor instance tst2 cannot be used as the receiver connection of actor Tst

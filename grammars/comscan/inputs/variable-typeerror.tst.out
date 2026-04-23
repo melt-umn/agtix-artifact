@@ -1,0 +1,6 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/variable-typeerror.tst:25:8: error: assignment expected an expression of type int, but an expression of type bool was given
+inputs/variable-typeerror.tst:26:8: error: assignment expected an expression of type bool, but an expression of type int was given
+inputs/variable-typeerror.tst:27:8: error: assignment expected an expression of type string, but an expression of type Go was given
+inputs/variable-typeerror.tst:28:8: error: assignment expected an expression of type Go, but an expression of type string was given

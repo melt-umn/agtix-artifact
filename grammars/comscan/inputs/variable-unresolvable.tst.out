@@ -1,0 +1,3 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/variable-unresolvable.tst:25:6: error: could not resolve name f

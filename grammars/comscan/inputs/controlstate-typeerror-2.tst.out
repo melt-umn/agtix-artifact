@@ -1,0 +1,5 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/controlstate-typeerror-2.tst:13:10: error: right operand of + expected expression of type int but received expression of type int
+inputs/controlstate-typeerror-2.tst:14:10: error: right operand of & expected expression of type bool or an expression of type int but received expression of type bool
+inputs/controlstate-typeerror-2.tst:15:10: error: right operand of ++ expected expression of type string but received expression of type string

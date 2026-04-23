@@ -1,0 +1,6 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/unresolvable-event.tst:6:19: error: actor instance mainRet cannot be used as the ret connection of actor Tst
+inputs/unresolvable-event.tst:9:25: error: unresolvable event type Foo
+inputs/unresolvable-event.tst:20:6: error: unknown event type Foo
+inputs/unresolvable-event.tst:20:16: error: unresolvable event type reference Foo

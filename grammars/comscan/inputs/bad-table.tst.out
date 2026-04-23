@@ -1,0 +1,8 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/bad-table.tst:21:14: error: unresolvable name reference nonexistantTable
+inputs/bad-table.tst:21:14: error: table index expected a table as its left operand but received an expression of type <err>
+inputs/bad-table.tst:23:15: error: table has key type int but was accessed  with an expression of type string
+inputs/bad-table.tst:25:4: error: index expected a key of type int but received an expression of type string
+inputs/bad-table.tst:27:12: error: table has key type int but was accessed  with an expression of type string
+inputs/bad-table.tst:29:4: error: assignment expected an expression of type string, but an expression of type int was given

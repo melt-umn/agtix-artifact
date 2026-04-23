@@ -1,0 +1,3 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/unresolvable-action.tst:15:6: error: could not resolve action nonexistantAction

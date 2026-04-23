@@ -114,8 +114,6 @@ Boolean ::= l::Type r::Type
     | (_, errTy()) -> true
     | (intTy(), intTy()) -> true
     | (boolTy(), boolTy()) -> true
-    | (boolTy(), intTy()) -> true
-    | (intTy(), boolTy()) -> true
     | (tableTy(k1, v1, _), tableTy(k2, v2, _)) -> tyEq(^k1, ^k2) && tyEq(^v1, ^v2) -- check default exprs?
     | (stringTy(), stringTy()) -> true
     | (connectionTy(), connectionTy()) -> true

@@ -1,0 +1,3 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/missing-event-field.tst:23:14: error: field b not defined for event Bar

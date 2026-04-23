@@ -374,51 +374,89 @@ for at least one test input program.
 --------------------------------------------------
 - Compiling grammar comscan
 - Executing tests inputs for comscan
-	[1/5] comscan/inputs/double.tst PASSED
-	[2/5] comscan/inputs/firewall.tst PASSED
-	[3/5] comscan/inputs/helloworld.tst PASSED
-	[4/5] comscan/inputs/msgs1.tst PASSED
-	[5/5] comscan/inputs/table.tst PASSED
+	[1/25] comscan/inputs/action-bad-params.tst PASSED
+	[2/25] comscan/inputs/actor-connection-typeerror.tst PASSED
+	[3/25] comscan/inputs/bad-table.tst PASSED
+	[4/25] comscan/inputs/build-event-badfields.tst PASSED
+	[5/25] comscan/inputs/controlstate-typeerror-2.tst PASSED
+	[6/25] comscan/inputs/controlstate-typeerror-3.tst PASSED
+	[7/25] comscan/inputs/controlstate-typeerror.tst PASSED
+	[8/25] comscan/inputs/controlstate-unresolvable.tst PASSED
+	[9/25] comscan/inputs/double.tst PASSED
+	[10/25] comscan/inputs/event-extends-unresolvable.tst PASSED
+	[11/25] comscan/inputs/firewall.tst PASSED
+	[12/25] comscan/inputs/helloworld.tst PASSED
+	[13/25] comscan/inputs/import-unresolvable.tst PASSED
+	[14/25] comscan/inputs/missing-event-field.tst PASSED
+	[15/25] comscan/inputs/missing-handler.tst PASSED
+	[16/25] comscan/inputs/msgs1.tst PASSED
+	[17/25] comscan/inputs/send-typeerror.tst PASSED
+	[18/25] comscan/inputs/table.tst PASSED
+	[19/25] comscan/inputs/undefined-event-field.tst PASSED
+	[20/25] comscan/inputs/unresolvable-action.tst PASSED
+	[21/25] comscan/inputs/unresolvable-actor.tst PASSED
+	[22/25] comscan/inputs/unresolvable-event.tst PASSED
+	[23/25] comscan/inputs/variable-typeerror.tst PASSED
+	[24/25] comscan/inputs/variable-unresolvable.tst PASSED
+	[25/25] comscan/inputs/wrong-handler.tst PASSED
 - Number of failed tests for comscan: 0
 --------------------------------------------------
 - Compiling grammar lm1
 - Executing tests inputs for lm1
-	[1/16] lm1/inputs/forward-vars.tst PASSED
-	[2/16] lm1/inputs/function-app.tst PASSED
-	[3/16] lm1/inputs/function-unresolvable-close.tst PASSED
-	[4/16] lm1/inputs/function-unresolvable.tst PASSED
-	[5/16] lm1/inputs/letpar.tst PASSED
-	[6/16] lm1/inputs/letrec.tst PASSED
-	[7/16] lm1/inputs/modules-import-circ.tst PASSED
-	[8/16] lm1/inputs/modules-import-nested.tst PASSED
-	[9/16] lm1/inputs/modules-import-nested-unresolvable.tst PASSED
-	[10/16] lm1/inputs/modules-import.tst PASSED
-	[11/16] lm1/inputs/modules-import-unresolvable.tst PASSED
-	[12/16] lm1/inputs/modules-no-import.tst PASSED
-	[13/16] lm1/inputs/simple-vars-shadowed.tst PASSED
-	[14/16] lm1/inputs/simple-vars.tst PASSED
-	[15/16] lm1/inputs/simple-vars-unresolvable-close.tst PASSED
-	[16/16] lm1/inputs/simple-vars-unresolvable.tst PASSED
+	[1/25] lm1/inputs/add-typeerror.tst PASSED
+	[2/25] lm1/inputs/conj-typeerror.tst PASSED
+	[3/25] lm1/inputs/equality-typeerror.tst PASSED
+	[4/25] lm1/inputs/forward-vars.tst PASSED
+	[5/25] lm1/inputs/function-app.tst PASSED
+	[6/25] lm1/inputs/function-typeerror.tst PASSED
+	[7/25] lm1/inputs/function-unresolvable-close.tst PASSED
+	[8/25] lm1/inputs/function-unresolvable.tst PASSED
+	[9/25] lm1/inputs/if-typeerror.tst PASSED
+	[10/25] lm1/inputs/letpar.tst PASSED
+	[11/25] lm1/inputs/letrec.tst PASSED
+	[12/25] lm1/inputs/modules-import-circ.tst PASSED
+	[13/25] lm1/inputs/modules-import-nested.tst PASSED
+	[14/25] lm1/inputs/modules-import-nested-unresolvable.tst PASSED
+	[15/25] lm1/inputs/modules-import.tst PASSED
+	[16/25] lm1/inputs/modules-import-unresolvable.tst PASSED
+	[17/25] lm1/inputs/modules-no-import.tst PASSED
+	[18/25] lm1/inputs/simple-vars-shadowed.tst PASSED
+	[19/25] lm1/inputs/simple-vars.tst PASSED
+	[20/25] lm1/inputs/simple-vars-unresolvable-close.tst PASSED
+	[21/25] lm1/inputs/simple-vars-unresolvable.tst PASSED
+	[22/25] lm1/inputs/typeerror-letrec.tst PASSED
+	[23/25] lm1/inputs/typeerror-letseq.tst PASSED
+	[24/25] lm1/inputs/var-typeerror2.tst PASSED
+	[25/25] lm1/inputs/var-typeerror.tst PASSED
 - Number of failed tests for lm1: 0
 --------------------------------------------------
 - Compiling grammar lm2
 - Executing tests inputs for lm2
-	[1/16] lm2/inputs/forward-vars.tst PASSED
-	[2/16] lm2/inputs/function-app.tst PASSED
-	[3/16] lm2/inputs/function-unresolvable-close.tst PASSED
-	[4/16] lm2/inputs/function-unresolvable.tst PASSED
-	[5/16] lm2/inputs/letpar.tst PASSED
-	[6/16] lm2/inputs/letrec.tst PASSED
-	[7/16] lm2/inputs/modules-import-circ.tst PASSED
-	[8/16] lm2/inputs/modules-import-nested.tst PASSED
-	[9/16] lm2/inputs/modules-import-nested-unresolvable.tst PASSED
-	[10/16] lm2/inputs/modules-import.tst PASSED
-	[11/16] lm2/inputs/modules-import-unresolvable.tst PASSED
-	[12/16] lm2/inputs/modules-no-import.tst PASSED
-	[13/16] lm2/inputs/simple-vars-shadowed.tst PASSED
-	[14/16] lm2/inputs/simple-vars.tst PASSED
-	[15/16] lm2/inputs/simple-vars-unresolvable-close.tst PASSED
-	[16/16] lm2/inputs/simple-vars-unresolvable.tst PASSED
+	[1/25] lm2/inputs/add-typeerror.tst PASSED
+	[2/25] lm2/inputs/conj-typeerror.tst PASSED
+	[3/25] lm2/inputs/equality-typeerror.tst PASSED
+	[4/25] lm2/inputs/forward-vars.tst PASSED
+	[5/25] lm2/inputs/function-app.tst PASSED
+	[6/25] lm2/inputs/function-typeerror.tst PASSED
+	[7/25] lm2/inputs/function-unresolvable-close.tst PASSED
+	[8/25] lm2/inputs/function-unresolvable.tst PASSED
+	[9/25] lm2/inputs/if-typeerror.tst PASSED
+	[10/25] lm2/inputs/letpar.tst PASSED
+	[11/25] lm2/inputs/letrec.tst PASSED
+	[12/25] lm2/inputs/modules-import-circ.tst PASSED
+	[13/25] lm2/inputs/modules-import-nested.tst PASSED
+	[14/25] lm2/inputs/modules-import-nested-unresolvable.tst PASSED
+	[15/25] lm2/inputs/modules-import.tst PASSED
+	[16/25] lm2/inputs/modules-import-unresolvable.tst PASSED
+	[17/25] lm2/inputs/modules-no-import.tst PASSED
+	[18/25] lm2/inputs/simple-vars-shadowed.tst PASSED
+	[19/25] lm2/inputs/simple-vars.tst PASSED
+	[20/25] lm2/inputs/simple-vars-unresolvable-close.tst PASSED
+	[21/25] lm2/inputs/simple-vars-unresolvable.tst PASSED
+	[22/25] lm2/inputs/typeerror-letrec.tst PASSED
+	[23/25] lm2/inputs/typeerror-letseq.tst PASSED
+	[24/25] lm2/inputs/var-typeerror2.tst PASSED
+	[25/25] lm2/inputs/var-typeerror.tst PASSED
 - Number of failed tests for lm2: 0
 --------------------------------------------------
 -- Final report ----------------------------------
@@ -433,8 +471,8 @@ for at least one test input program.
 
 4. **Estimated Runtime (Optional):** Provide an estimate of how long the full evaluation will take.
 
-On the testing system specified above, `./run-tests` completed in 2 minutes,
-24 seconds.
+On the testing system specified above, `./run-tests` completed in 4 minutes,
+3 seconds.
 
 
 5. **Potential Issues:** List any known challenges in reproducing the results and how to mitigate them.

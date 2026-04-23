@@ -1,0 +1,6 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+  - inputs/if-typeerror.tst:1:8: error: conditional expects first operand to be of type bool, but an expression was given of type int
+  - inputs/if-typeerror.tst:2:8: error: conditional expects first operand to be of type bool, but an expression was given of type int
+  - inputs/if-typeerror.tst:2:11: error: (+) LHS type not int/float, is bool
+  - inputs/if-typeerror.tst:3:8: error: conditional expects else branch to be of type float, but an expression was given of type int

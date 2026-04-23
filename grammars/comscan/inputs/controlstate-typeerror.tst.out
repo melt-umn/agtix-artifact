@@ -1,0 +1,5 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/controlstate-typeerror.tst:13:8: error: assignment expected an expression of type int, but an expression of type bool was given
+inputs/controlstate-typeerror.tst:14:8: error: assignment expected an expression of type bool, but an expression of type string was given
+inputs/controlstate-typeerror.tst:15:8: error: assignment expected an expression of type string, but an expression of type int was given

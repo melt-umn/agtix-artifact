@@ -1,0 +1,3 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+  - inputs/var-typeerror.tst:2:4: error: variable y declared with type bool, but its definition has type int

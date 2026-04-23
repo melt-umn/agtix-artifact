@@ -1,0 +1,5 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+  - inputs/conj-typeerror.tst:1:13: error: conjunction expects type of left operand to be bool, but an expression was given of type int
+  - inputs/conj-typeerror.tst:3:8: error: conjunction expects type of left operand to be bool, but an expression was given of type int
+  - inputs/conj-typeerror.tst:3:8: error: conjunction expects type of right operand to be bool, but an expression was given of type int

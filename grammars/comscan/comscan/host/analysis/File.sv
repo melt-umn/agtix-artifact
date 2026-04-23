@@ -98,7 +98,7 @@ top::TopDcls ::= d::EventTypeDcl
 abstract production importTopDcls
 top::TopDcls ::= filepath::String
 {
-  local filename::String = fileNameInFilePath(filepath);
+  local filename::String = filepath;
   local edgesMsgs::([Decorated Scope with CSLabels], [Message]) =
     case query(`lex `file, isName(filename), top.s) of
     | []    -> ([], [errMessage("could not resolve file " ++ filename, top.location)])
@@ -108,5 +108,5 @@ top::TopDcls ::= filepath::String
 
   top.s -[[ `imp ]]-> edgesMsgs.1;
 
-  --top.msgs := edgesMsgs.2;
+  top.msgs <- edgesMsgs.2;
 }

@@ -1,0 +1,4 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+  - inputs/function-typeerror.tst:2:8: error: application expects right operand to be of type int, but an expression was given of type bool
+  - inputs/function-typeerror.tst:3:8: error: application expects right operand to be of type int, but an expression was given of type float

@@ -1,0 +1,5 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/controlstate-typeerror-3.tst:19:10: error: right operand of - expected expression of type int but received expression of type int
+inputs/controlstate-typeerror-3.tst:20:10: error: right operand of || expected expression of type bool or an expression of type int but received expression of type bool
+inputs/controlstate-typeerror-3.tst:21:10: error: left operand of ++ expected expression of type string but received expression of type Go

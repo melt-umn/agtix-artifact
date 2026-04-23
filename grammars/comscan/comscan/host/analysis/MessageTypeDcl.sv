@@ -46,9 +46,9 @@ top::EventTypeDcl ::= name::String parent::String fields::EventFields
 
   local parAndMsgs::(Decorated Scope with CSLabels, [Message]) =
     case query(`lex* `imp? `event, isName(parent), top.s) of
-    | [] -> (deadScope, [errMessage("unkown event type " ++ parent, top.location)])
+    | [] -> (deadScope, [errMessage("unknown event type " ++ parent, top.location)])
     | s::[] -> (s, [])
-    | _ -> (deadScope, [errMessage("ambiguous event type reference " ++ parent, top.location)])
+    | _ -> (deadScope, [errMessage("ambiguous event type " ++ parent, top.location)])
     end;
 
   local parFields::[(String, Type)] =
@@ -65,6 +65,8 @@ top::EventTypeDcl ::= name::String parent::String fields::EventFields
   top.eventTypes := [top];
   top.fields = fields.fields ++ parFields;
   top.parentName = just(parent);
+
+  top.msgs <- parAndMsgs.2;
   top.msgs <- 
     let duplLookupRes::[Decorated Scope with CSLabels] =
       query(`lex* `imp? `event, isNameDupl(name, top.location), top.s)

@@ -1,0 +1,5 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/build-event-badfields.tst:20:35: error: unresolvable field reference bar
+inputs/build-event-badfields.tst:20:20: error: field value not defined for event Integer
+inputs/build-event-badfields.tst:21:35: error: field value of event Integer expected type int but received bool

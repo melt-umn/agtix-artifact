@@ -1,0 +1,3 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/send-typeerror.tst:21:6: error: cannot send event of type Go to connection other

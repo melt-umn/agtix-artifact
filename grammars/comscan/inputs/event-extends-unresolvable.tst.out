@@ -1,0 +1,3 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+inputs/event-extends-unresolvable.tst:10:0: error: unknown event type Baz

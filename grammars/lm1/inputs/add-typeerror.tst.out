@@ -1,0 +1,6 @@
+[✔] Parse success
+[✗] Semantic check failed with the following errors:
+  - inputs/add-typeerror.tst:1:12: error: (+) RHS type not int/float, is bool
+  - inputs/add-typeerror.tst:2:8: error: (+) LHS type not int/float, is bool
+  - inputs/add-typeerror.tst:3:8: error: (+) LHS type not int/float, is bool
+  - inputs/add-typeerror.tst:3:8: error: (+) RHS type not int/float, is bool
