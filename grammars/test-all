@@ -4,7 +4,7 @@ HERE=$(dirname "${BASH_SOURCE[0]}")
 
 comp_grammar() {
   pushd $1 > /dev/null
-  ./compile #> /dev/null 2>&1
+  ./compile > /dev/null 2>&1
   RES=$?
   popd > /dev/null
   return $RES

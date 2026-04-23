@@ -2,7 +2,7 @@
 
 ## Author Information
 - **Names:** Luke Bessant, Eric Van Wyk
-- **Affiliations:** University of Minnesota
+- **Affiliations:** University of Minnesota (both)
 - **Emails:** bessa028@umn.edu, evw@umn.edu
 
 ## Associated Paper Information
@@ -75,15 +75,22 @@ latest version of AGTix.
 ├── grammars              # Directory holding grammars for testing languages
 │   ├── test-all          # Script to run all test inputs for all test languages
 │   ├── test-one          # Script with function allowing individual grammars to execute individual test inputs
-│   └── lm1/              # Directory for LM version 1 test case
-│       ├── lm1/          # Contains grammar for LM version 1
-│       ├── inputs/       # Test inputs
-│       ├── compile       # Compile script
-│       ├── run-test      # Script to run an individual test input
-│       └── clean         # Cleanup grammar dir
+│   ├── comscan/          # Directory for ComScaN test case
+│   │   ├── comscan/      # Contains grammar for ComScaN language
+│   │   ├── inputs/       # Test inputs
+│   │   ├── lib/          # Extra ComScaN programs for 'library' definitions, included in all tests for this language
+│   │   ├── compile       # Compile script
+│   │   ├── run-test      # Script to run an individual test input
+│   │   ├── clean         # Cleanup grammar dir
+│   │   └── README.md     # Overview of this example language
+│   ├── lm1/              # Directory for LM version 1 test case, similar
+│   │   └── ...           # Contents similar to comscan directory
+│   └── lm2/              # Directory for LM version 2 test case
+│       └── ...           # Contents similar to comscan directory
 ├── jars/                 # Contains JAR files for AgTix/Silver
 ├── tools/                # Home for certain scripts
 │   └── silver            # Script for invoking Siler with JARs in jars/
+├── gen/                  # Directory for Silver-generated files, created when languages are compiled - can be ignored
 ├── Dockerfile            # Dockerfile for making an image of this artifact
 ├── docker-image          # Script to generate and execute artifact docker image
 ├── README.md             # Project overview
@@ -200,7 +207,10 @@ We show below code snippets that illustrate the use of AGTix constructs
 (identified by comments '--') for declaring scope graphs and scope attributes, 
 building and querying scope graphs, as well as propagating scopes down an AST as
 scope attributes. These snippets come from code included in this artifact, in:
-`grammars/lm2/lm2/nameanalysis/Scoping.sv`.
+`grammars/lm2/lm2/nameanalysis/Scoping.sv`. Details on what the AGTix constructs
+used below are can be seen in the top-level README packaged with the artifact
+in `agtix-artifact/README/md`. This is inside of the Docker image, if viewing
+the artifact using Zenodo.
 
 The rest of the evaluation instructions following the snippets below describes
 how to execute AGTix specifications of languages with test input programs
@@ -362,6 +372,15 @@ for at least one test input program.
 --------------------------------------------------
 -- Testing harness for AgTix ---------------------
 --------------------------------------------------
+- Compiling grammar comscan
+- Executing tests inputs for comscan
+	[1/5] comscan/inputs/double.tst PASSED
+	[2/5] comscan/inputs/firewall.tst PASSED
+	[3/5] comscan/inputs/helloworld.tst PASSED
+	[4/5] comscan/inputs/msgs1.tst PASSED
+	[5/5] comscan/inputs/table.tst PASSED
+- Number of failed tests for comscan: 0
+--------------------------------------------------
 - Compiling grammar lm1
 - Executing tests inputs for lm1
 	[1/16] lm1/inputs/forward-vars.tst PASSED
@@ -371,15 +390,15 @@ for at least one test input program.
 	[5/16] lm1/inputs/letpar.tst PASSED
 	[6/16] lm1/inputs/letrec.tst PASSED
 	[7/16] lm1/inputs/modules-import-circ.tst PASSED
-	[8/16] lm1/inputs/modules-import-nested-unresolvable.tst PASSED
-	[9/16] lm1/inputs/modules-import-nested.tst PASSED
-	[10/16] lm1/inputs/modules-import-unresolvable.tst PASSED
-	[11/16] lm1/inputs/modules-import.tst PASSED
+	[8/16] lm1/inputs/modules-import-nested.tst PASSED
+	[9/16] lm1/inputs/modules-import-nested-unresolvable.tst PASSED
+	[10/16] lm1/inputs/modules-import.tst PASSED
+	[11/16] lm1/inputs/modules-import-unresolvable.tst PASSED
 	[12/16] lm1/inputs/modules-no-import.tst PASSED
 	[13/16] lm1/inputs/simple-vars-shadowed.tst PASSED
-	[14/16] lm1/inputs/simple-vars-unresolvable-close.tst PASSED
-	[15/16] lm1/inputs/simple-vars-unresolvable.tst PASSED
-	[16/16] lm1/inputs/simple-vars.tst PASSED
+	[14/16] lm1/inputs/simple-vars.tst PASSED
+	[15/16] lm1/inputs/simple-vars-unresolvable-close.tst PASSED
+	[16/16] lm1/inputs/simple-vars-unresolvable.tst PASSED
 - Number of failed tests for lm1: 0
 --------------------------------------------------
 - Compiling grammar lm2
@@ -391,30 +410,31 @@ for at least one test input program.
 	[5/16] lm2/inputs/letpar.tst PASSED
 	[6/16] lm2/inputs/letrec.tst PASSED
 	[7/16] lm2/inputs/modules-import-circ.tst PASSED
-	[8/16] lm2/inputs/modules-import-nested-unresolvable.tst PASSED
-	[9/16] lm2/inputs/modules-import-nested.tst PASSED
-	[10/16] lm2/inputs/modules-import-unresolvable.tst PASSED
-	[11/16] lm2/inputs/modules-import.tst PASSED
+	[8/16] lm2/inputs/modules-import-nested.tst PASSED
+	[9/16] lm2/inputs/modules-import-nested-unresolvable.tst PASSED
+	[10/16] lm2/inputs/modules-import.tst PASSED
+	[11/16] lm2/inputs/modules-import-unresolvable.tst PASSED
 	[12/16] lm2/inputs/modules-no-import.tst PASSED
 	[13/16] lm2/inputs/simple-vars-shadowed.tst PASSED
-	[14/16] lm2/inputs/simple-vars-unresolvable-close.tst PASSED
-	[15/16] lm2/inputs/simple-vars-unresolvable.tst PASSED
-	[16/16] lm2/inputs/simple-vars.tst PASSED
+	[14/16] lm2/inputs/simple-vars.tst PASSED
+	[15/16] lm2/inputs/simple-vars-unresolvable-close.tst PASSED
+	[16/16] lm2/inputs/simple-vars-unresolvable.tst PASSED
 - Number of failed tests for lm2: 0
 --------------------------------------------------
 -- Final report ----------------------------------
 --------------------------------------------------
 - All grammars compiled successfully
 - Grammars that passed all tests:
+	- comscan
 	- lm1
-- Test inputs successful for all grammars
+	- lm2
 --------------------------------------------------
 ```
 
 4. **Estimated Runtime (Optional):** Provide an estimate of how long the full evaluation will take.
 
 On the testing system specified above, `./run-tests` completed in 2 minutes,
-5 seconds.
+24 seconds.
 
 
 5. **Potential Issues:** List any known challenges in reproducing the results and how to mitigate them.
