@@ -43,15 +43,22 @@ latest version of AGTix.
 ├── grammars              # Directory holding grammars for testing languages
 │   ├── test-all          # Script to run all test inputs for all test languages
 │   ├── test-one          # Script with function allowing individual grammars to execute individual test inputs
-│   └── lm1/              # Directory for LM version 1 test case
-│       ├── lm1/          # Contains grammar for LM version 1
-│       ├── inputs/       # Tetst inputs
-│       ├── compile       # Compile script
-│       ├── run-test      # Script to run an individual test input
-│       └── clean         # Cleanup grammar dir
+│   ├── comscan/          # Directory for ComScaN test case
+│   │   ├── comscan/      # Contains grammar for ComScaN language
+│   │   ├── inputs/       # Test inputs
+│   │   ├── lib/          # Extra ComScaN programs for 'library' definitions, included in all tests for this language
+│   │   ├── compile       # Compile script
+│   │   ├── run-test      # Script to run an individual test input
+│   │   ├── clean         # Cleanup grammar dir
+│   │   └── README.md     # Overview of this example language
+│   ├── lm1/              # Directory for LM version 1 test case, similar
+│   │   └── ...           # Contents similar to comscan directory
+│   └── lm2/              # Directory for LM version 2 test case
+│       └── ...           # Contents similar to comscan directory
 ├── jars/                 # Contains JAR files for AgTix/Silver
 ├── tools/                # Home for certain scripts
 │   └── silver            # Script for invoking Siler with JARs in jars/
+├── gen/                  # Directory for Silver-generated files, created when languages are compiled - can be ignored
 ├── Dockerfile            # Dockerfile for making an image of this artifact
 ├── docker-image          # Script to generate and execute artifact docker image
 ├── README.md             # Project overview
