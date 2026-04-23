@@ -325,6 +325,9 @@ concrete productions top::MatchedIfStmt_c
 | d::Declaration_c
   { top.ast = dclStmt(d.ast, location=top.location); }
 
+| t::Type_c name::Id_t '=' e::Expr_c ';'
+  { top.ast = dclAssignStmt(t.ast, name.lexeme, e.ast, location=top.location); }
+
 | lhs::LHS_c a::AssignmentSymbol_c e::Expr_c ';'
   { top.ast = a.ast(lhs.ast, e.ast); }
 

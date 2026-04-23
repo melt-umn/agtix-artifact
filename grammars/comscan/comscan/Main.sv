@@ -5,11 +5,8 @@ imports silver:compiler:extension:scopegraphs;
 imports comscan:host:concreteSyntax;
 imports comscan:host:analysis;
 
-imports comscan:declareAssign:concreteSyntax;
-
 parser p::File_c {
   comscan:host:concreteSyntax;
-  comscan:declareAssign:concreteSyntax;
 }
 
 --

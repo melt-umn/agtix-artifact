@@ -23,10 +23,10 @@ nonterminal Main with location, errs, ocaml;
 abstract production program
 top::Main ::= ds::Decls
 {
-  newScope glob;
+  newScope globalScope;
   newScope deadScope;
 
-  ds.s = glob;
+  ds.s = globalScope;
   ds.s_module = deadScope;
 
   top.errs = ds.errs;
@@ -746,10 +746,7 @@ global defaultErrBind::Decorated Bind with {s, inSeqLet} =
 
 fun isBindCalled (Boolean ::= Datum) ::= x::String =
   \d::Datum ->
-    case d of
-    | datumVar(dx, _) -> x == dx
-    | _ -> false
-    end;
+    case d of | datumVar(dx, _) -> x == dx | _ -> false end;
 
 fun isModuleCalled (Boolean ::= Datum) ::= x::String =
   \d::Datum ->

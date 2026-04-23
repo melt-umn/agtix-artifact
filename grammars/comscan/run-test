@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+if [ ! -f "comscan.jar" ]; then
+  ./compile
+fi
+
+EXEC=$(java -jar comscan.jar $1 lib/stdio.tst lib/events.tst)
+
+echo -e "- Test case output:\n$EXEC"
+
+#DIFF=$(diff <(echo "$EXEC") $2.out 2>&1)
+#RES=$?
+
+#if [ "$RES" != "0" ]; then
+#  echo -e "2. Diff against expected output $2.out:\n$DIFF"
+#else
+#  echo "- Matches expected output $2.out"
+#fi

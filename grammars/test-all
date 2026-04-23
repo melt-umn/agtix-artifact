@@ -4,7 +4,7 @@ HERE=$(dirname "${BASH_SOURCE[0]}")
 
 comp_grammar() {
   pushd $1 > /dev/null
-  ./compile > /dev/null 2>&1
+  ./compile #> /dev/null 2>&1
   RES=$?
   popd > /dev/null
   return $RES
@@ -23,7 +23,7 @@ exec_tests() {
   TSTS=(inputs/*.tst)
   TOTAL=${#TSTS[@]}
   for INP in ${TSTS[@]}; do
-    OUT=$(diff <(java -jar "$1.jar" "$INP") "$INP.out")
+    OUT=$(diff <(java -jar "$1.jar" $2 "$INP") "$INP.out")
     RES=$?
     if [ "$RES" != "0" ]; then
       echo -e "\t[$COUNTER/$TOTAL] $1/$INP FAILED with the following diff:"
@@ -55,9 +55,6 @@ PASSED_EXEC=()
 pushd $HERE > /dev/null
 
 for TST in $(find * -maxdepth 0 -type d); do
-  if [ "$TST" == "comscan" ]; then
-    continue
-  fi
   echo "--------------------------------------------------"
   echo "- Compiling grammar $TST"
   comp_grammar "$TST"
@@ -68,7 +65,11 @@ for TST in $(find * -maxdepth 0 -type d); do
     continue
   fi
   echo "- Executing tests inputs for $TST"
-  exec_tests "$TST"
+  if [ "$TST" == "comscan" ]; then
+    exec_tests "$TST" "lib/stdio.tst lib/events.tst"
+  else
+    exec_tests "$TST" ""
+  fi
   FAIL_NUM=$?
   echo "- Number of failed tests for $TST: $FAIL_NUM"
   if [ "$FAIL_NUM" != "0" ]; then

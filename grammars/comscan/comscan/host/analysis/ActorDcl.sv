@@ -23,6 +23,8 @@ top::ActorDcl ::= name::String params::Params a::ActorSignature decls::ActorPart
   
 
   params.s = actorScope;
+  params.s_def = actorScope;
+  
   a.s = actorScope;
 
   decls.s = actorScope;

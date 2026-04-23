@@ -1,4 +1,4 @@
-import "events.net";
+import "events.tst";
 
 event Scan { };
 

@@ -71,13 +71,13 @@ top::File ::= d::TopDcls
 --
 
 nonterminal TopDcls with location, msgs, s, eventTypes, hasMainActor;
-propagate msgs on TopDcls excluding branchTopDcls, importTopDcls;
+propagate msgs on TopDcls {-excluding branchTopDcls, importTopDcls-};
 propagate s, eventTypes, hasMainActor on TopDcls;
 
 abstract production branchTopDcls
 top::TopDcls ::= d1::TopDcls d2::TopDcls
 {
-  top.msgs := if !null(d1.msgs) then d1.msgs else d2.msgs;
+  --top.msgs := if !null(d1.msgs) then d1.msgs else d2.msgs;
 }
 
 abstract production nilTopDcls
@@ -108,5 +108,5 @@ top::TopDcls ::= filepath::String
 
   top.s -[[ `imp ]]-> edgesMsgs.1;
 
-  top.msgs := edgesMsgs.2;
+  --top.msgs := edgesMsgs.2;
 }

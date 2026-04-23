@@ -600,7 +600,7 @@ top::Expr ::= name::String fields::BuildEventFields
     \s::Decorated Scope with CSLabels -> 
       case s.datum of datumVar(node) -> node.name 
                     | _ -> error("eventBuild.fieldNames") end,
-    query(`field, any(), fields.eventScope)
+    fields.eventScope.field
   );
   local undefinedFields::[String] = removeAll(fields.fieldsHandled, fieldNames);
 
@@ -635,7 +635,12 @@ top::Expr ::= e::Expr field::String
     case e.type of
     | nameEventTy(n) ->
       let resEvent::[Decorated Scope with CSLabels] = query(`lex* `imp? `event, isName(n), top.s)
-      in concat(map(\s::Decorated Scope with CSLabels -> query(`field, isName(field), s), resEvent)) end
+      in concat(map(\s::Decorated Scope with CSLabels -> 
+                      filter(\s::Decorated Scope with CSLabels -> 
+                                let pred::(Boolean ::= Datum) = isName(field)
+                                in pred(s.datum) end, s.field),
+                    resEvent)) 
+      end
     | _ -> []
     end;
 
@@ -739,8 +744,9 @@ top::BuildEventFields ::= name::String e::Expr m2::BuildEventFields
   propagate msgs, s, eventScope, eventName;
 
   local fieldRes::[Decorated Scope with CSLabels] =
-    query(`field, isName(name), top.eventScope);
-
+    let pred::(Boolean ::= Datum) = isName(name) in
+      filter(\s::Decorated Scope with CSLabels -> pred(s.datum), top.eventScope.field)
+    end;
   top.fieldsHandled = name::m2.fieldsHandled;
 
   top.msgs <- 

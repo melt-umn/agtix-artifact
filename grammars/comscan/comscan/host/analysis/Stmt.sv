@@ -17,6 +17,24 @@ top::Stmt ::= d::DclList
   propagate s, s_def, msgs;
 }
 
+abstract production dclAssignStmt
+top::Stmt ::= t::Type id::String body::Expr
+{ propagate s, msgs;
+
+  local expectType::Type = ^t;
+  local exprType::Type = body.type;
+
+  newScope dclScope -> datumVar(decorate dcl(^t, id, modifiersNil(location=bogusLoc()), location=bogusLoc()) with { s = top.s; s_def = top.s_def; });
+  top.s_def -[ `var ]-> dclScope;
+
+  top.msgs <-
+    if !tyEq(^expectType, ^exprType)
+    then [ errMessage("assignment expected an expression of type " ++ 
+                      expectType.strRep ++ ", but an expression of type " ++
+                      exprType.strRep ++ " was given", top.location) ]
+    else [];
+}
+
 abstract production assign
 top::Stmt ::= lhs::LHS e::Expr
 { 
@@ -80,7 +98,8 @@ top::Stmt ::= event::Expr connection::String
       foldr(
         \c::String acc::[Decorated Scope with CSLabels] ->
           if null(acc) then
-            let res::[Decorated Scope with CSLabels] = query(`lex* `imp? `event, isName(c), top.s)
+            let res::[Decorated Scope with CSLabels] = 
+              query(`lex* `imp? `event, isName(c), top.s)
             in
             let ch::[Decorated Scope with CSLabels] = 
               concat(map(\s::Decorated Scope with CSLabels ->
@@ -330,7 +349,10 @@ top::LHS ::= rec::LHS field::String
 
   local result::[Decorated Scope with CSLabels] = 
     case rec.resScope of
-    | just(s) -> query(`field, isName(field), s)
+    | just(s) -> filter(\s::Decorated Scope with CSLabels ->
+                          let pred::(Boolean ::= Datum) = isName(field)
+                          in pred(s.datum) end,
+                        s.field)
     | _ -> []
     end;
 
