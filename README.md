@@ -23,9 +23,7 @@ presented in that previous work, hiding the details such as how
 targets of edge assertions are propagated around a syntax tree, which
 often involve many equations and definitions.
 It also means that Statix specifications can be
-more easily translated to RAG specifications, a consequence of
-AGTix is that these now have a much closer line-to-line
-correspondence.
+more easily translated to RAG specifications.
 
 The artifact contains a number of example languages with name resolution
 semantics defined using AGTix, scripts for compiling those languages, and other
@@ -187,7 +185,6 @@ top::VarRef ::= x::String
 
 ```
 ./run-tests
-./grammars/test-all   # alternate
 ```
 
 ### Testing a single grammar

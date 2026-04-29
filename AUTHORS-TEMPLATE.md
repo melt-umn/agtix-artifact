@@ -40,28 +40,29 @@ https://github.com/melt-umn/agtix-artifact
 - **Describe the structure of the artifact and provide a brief overview of the contents.**
 
 This artifact accompanies the tool paper 'AGTix: Concise Definition of Scope
-Graphs in Reference Attribute Grammars' of Luke Bessant and Eric Van Wyk,
-submitted to [ACM SIGPLAN SLE 2026](https://conf.researchr.org/home/sle-2026).
+Graphs in Reference Attribute Grammars' by Luke Bessant and Eric Van Wyk,
+published in [ACM SIGPLAN International Conference on Software Language Engineering (SLE 2026)](https://conf.researchr.org/home/sle-2026).
 Its purpose is to demonstrate the use of AGTix constructs for specifying the
 construction and interrogation of scope graphs, which are implemented as a
-language extension to the reference attribute grammar language Silver.
+language extension to [Silver](https://melt.cs.umn.edu/silver/), an
+attribute grammar system with reference and higher-order attributes.
 
-AGTix is a fusion of [Statix](https://spoofax.dev/references/statix/) 
-(inspiration for the constructs introduced is primarily inspired by
+AGTix is a fusion of [Statix](https://spoofax.dev/references/statix/)
+(the constructs introduced are primarily inspired by
 [MiniStatix](https://github.com/metaborg/ministatix.hs)) and reference
-attribute grammars ([Silver](github.com/melt-umn/silver) specifically), which
-brings Statix-like constraints for building and querying scope graphs into RAGs
-as new equation forms, implemented as a language extension to Silver. This
-allows a much more concise definition of scope graph-based name analysis than
-is yielded by the full Statix-to-RAGs translation of our 
-[previous work](https://dl.acm.org/doi/pdf/10.1145/3732771.3742711). The new
-AGTix constructs implicitly translate to attribute declarations/definitions
-and production equations akin to what is presented in that previous work, hiding
-the details such as how targets of edge assertions are propagated around an
-AST, which often involve many more equations and definitions than what AGTix
-specifications yield. It also means that Statix specifications can be more
-easily translated to RAG specifications, as a consequence of AGTix is that these
-now have a much closer line-to-line correspondence.
+attribute grammars (RAGs), which brings Statix-like constraints for
+building and querying scope graphs into RAGs as new equation forms,
+implemented as a language extension to Silver. This allows a more
+concise definition of scope graph-based name analysis than is yielded
+by the full Statix-to-RAGs translation of our [previous
+work](https://dl.acm.org/doi/pdf/10.1145/3732771.3742711). The new
+AGTix constructs implicitly translate to attribute
+declarations/definitions and production equations akin to what is
+presented in that previous work, hiding the details such as how
+targets of edge assertions are propagated around a syntax tree, which
+often involve many equations and definitions.
+It also means that Statix specifications can be
+more easily translated to RAG specifications.
 
 The artifact contains a number of example languages with name resolution
 semantics defined using AGTix, scripts for compiling those languages, and other
@@ -131,11 +132,11 @@ No strict requirements.
 
 - **Minimum required Memory:**
 
-1.3GB (Max memory usage of `time ./run-tests`, to nearest 0.1GB)
+1.2GB (Max memory usage of `time ./run-tests`, rounded up to nearest 0.1GB)
 
 - **Minimum required Disk Space:**
 
-1.6GB (Docker image size)
+1.9GB (Docker image size)
 
 - **Minimum required GPU (if applicable):**
 
@@ -147,11 +148,10 @@ Not applicable.
 Not applicable.
 
 ## Kick-the-Tires
-This section should provide a simple and quick way for the reviewer to check whether all dependencies are correctly installed and that all scripts run without errors. The goal is not to run the full evaluation but to verify that the artifact is functional.
 
 ### Steps to Perform a Quick Test
 
-1. **Setup Instructions:** Describe the minimal steps needed to set up the environment.
+1. **Setup Instructions:**
 
 The reviewer should load and run the AGTix Docker image as below:
 ```
@@ -159,7 +159,7 @@ docker load -i agtix-docker.tar
 docker run -ti agtix:latest
 ```
 
-2. **Run a Sample Command:** Provide a single command or a few minimal commands that verify the artifact is working.
+2. **Run a Sample Command:**
 
 Then to check that Silver/AGTix are able to be built, we can try building the
 compiler of one of the example languages e.g. LM1:
@@ -168,7 +168,7 @@ compiler of one of the example languages e.g. LM1:
 ./grammars/lm1/compile
 ```
 
-3. **Expected Output:** Describe what the expected output should be.
+3. **Expected Output:**
 
 The reviewer should be able to see the Ant build process starting with:
 ```
@@ -187,7 +187,7 @@ BUILD SUCCESSFUL
 Total time: n seconds     # for some n
 ```
 
-4. **Troubleshooting:** List common issues and their possible solutions if the setup fails.
+4. **Troubleshooting:**
 
 No known issues.
 
@@ -196,7 +196,7 @@ For all experimental claims made in the paper, please provide the following:
 
 ### AGTix - Reference attribute grammars + Statix
 
-1. **Reference to the Experimental Claim:** Quote or reference the claim from the paper.
+1. **Reference to the Experimental Claim:**
 
 AGTix is a combination of reference attribute grammars (RAGs) and Statix, that
 provides a means for implementing in RAGs the name resolution semantics of
@@ -349,18 +349,22 @@ top::ModRef ::= x::String
 }
 ```
 
-2. **Reproduction Steps:** Explain how this claim can be reproduced using the artifact.
-   - Example: *“The results presented in Figure 3 can be reproduced by executing `run_experiment.sh` with the configuration file `config_figure3.json`.”*
+2. **Reproduction Steps:**
 
 
 Once inside the artifact Docker image using the steps described above in the
-'quick test' section, the reviewer should run `./run-tests` in the immediate
-directory to invoke the testing harness. This runs all test input programs for
-all of the example languages whose name binding semantics we specify in AGTix.
+'quick test' section, the reviewer should run the below command in the immediate
+directory (`/home/agtix`) to invoke the testing harness.
+This runs all test input programs for all of the example languages whose name
+binding semantics we specify in AGTix.
+
+```
+./run-tests
+```
 
 3. **Expected Output:** Clearly describe what the expected output should be.
 
-The expected output of `./run-tests` are as follows. The output is comprised of
+The expected output of the above command are as follows. The output is comprised of
 runs of test input programs for all of the example languages, written with
 AGTix, provided. Each example language block reports the number of failed tests
 for that language. The final report says that the grammars for all example
@@ -470,12 +474,12 @@ for at least one test input program.
 --------------------------------------------------
 ```
 
-4. **Estimated Runtime (Optional):** Provide an estimate of how long the full evaluation will take.
+4. **Estimated Runtime (Optional):** 
 
-On the testing system specified above, `./run-tests` completed in 4 minutes,
-3 seconds.
+On the testing system specified above, `./run-tests` completed in 2 minutes,
+52 seconds
 
 
-5. **Potential Issues:** List any known challenges in reproducing the results and how to mitigate them.
+5. **Potential Issues:**
 
 No known issues.
