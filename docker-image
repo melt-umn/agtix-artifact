@@ -1,9 +1,21 @@
 #!/bin/bash 
 
-# amd64
-docker buildx build --platform linux/amd64 -t agtix:amd64 --load .
-docker save agtix:amd64 > agtix-amd64.tar
+CHOSE=0
 
-# arm64
-docker buildx build --platform linux/arm64 -t agtix:arm64 --load .
-docker save agtix:arm64 > agtix-arm64.tar
+while [ "$CHOSE" -eq 0 ]; do
+  read -p $'Choose one of the following architectures for building Docker tarball [a/b]:\n  (a) amd64\n  (b) arm64\n' -n 1 -r
+  echo
+  if [[ "$REPLY" == "a" ]] || [[ "$REPLY" == "A" ]] then
+    echo "Building image tarball for amd64..."
+    docker buildx build --platform linux/amd64 -t agtix:amd64 --load .
+    docker save agtix:amd64 > agtix-amd64.tar
+    CHOSE=1
+    break
+  elif [[ "$REPLY" == "b" ]] || [[ "$REPLY" == "B" ]] then
+    echo "Building image tarball for arm64..."
+    docker buildx build --platform linux/arm64 -t agtix:arm64 --load .
+    docker save agtix:arm64 > agtix-arm64.tar
+    CHOSE=1
+    break
+  fi
+done
