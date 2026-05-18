@@ -178,6 +178,11 @@ top::VarRef ::= x::String
 }
 ```
 
+## Prerequisites
+
+- [Java JDK, version 1.8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+- [Apache Ant](http://ant.apache.org/bindownload.cgi)
+
 ## Usage
 
 ### Testing all grammars
