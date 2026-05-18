@@ -61,9 +61,8 @@ latest version of AGTix.
 │   └── silver            # Script for invoking Siler with JARs in jars/
 ├── gen/                  # Directory for Silver-generated files, created when languages are compiled - can be ignored
 ├── Dockerfile            # Dockerfile for making an image of this artifact
-├── docker-image          # Script to generate and execute artifact docker image
+├── docker-image          # Script to build artifact docker image
 ├── README.md             # Project overview
-└── AUTHORS-TEMPLATE.md   # Artifact information for SLE kick-the-tires review
 ```
 
 ## AGTix constructs
